@@ -1,0 +1,81 @@
+<!-- create.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/images/favicon.ico" type="image/png" rel="shortcut icon">
+    <link href="../static/css/style.css" type="text/css" rel="stylesheet">
+    <title>Create</title>
+</head>
+
+<body>
+    <header>
+    </header>
+    <nav>
+        <h1>The Questing Quill! 🪶</h1>
+        <a href="/">Home ⚔️</a>
+        <a href="/create">Create ✍️</a>
+        <a href="/about">About 🛈</a>
+    </nav>
+    <main>
+        <section class="center">
+            <h1 class="headline-h1">Transcribe a new manuscript. 📖</h1>
+            <br>
+        </section>
+        <section>
+            <div>
+                <form class="add-edit-container" action='/create' method='POST'>
+                    <section>
+                        <div>
+                            {{ with .Errors.Isbn }}
+                            <p class="error">{{ . }}</p><br>
+                            {{ end }}
+                            <span>ISBN: </span>
+                            <input type="text" name="isbn" value="{{ .Isbn }}">
+                        </div>
+                        <div>
+                            {{ with .Errors.Title }}
+                            <p class="error">{{ . }}</p><br>
+                            {{ end }}
+                            <span>Title: </span>
+                            <input type="text" name="title" value="{{ .Title }}">
+                        </div>
+                        <div>
+                            {{ with .Errors.Author }}
+                            <p class="error">{{ . }}</p><br>
+                            {{ end }}
+                            <span>Author: </span>
+                            <input type="text" name="author" value="{{ .Author }}">
+                        </div>
+                        <div>
+                            {{ with .Errors.Price }}
+                            <p class="error">{{ . }}</p><br>
+                            {{ end }}
+                            <span>Price: </span>
+                            <input type="text" name="price" value="{{ .Price }}">
+                        </div>
+                    </section>
+                    <section>
+                        <div>
+                            {{ with .Errors.Excerpt }}
+                            <p class="error">{{ . }}</p><br>
+                            {{ end }}
+                            <span>Excerpt: </span>
+                            <textarea name="excerpt" rows="7" cols="40">{{ .Excerpt }}</textarea>
+                        </div>
+                        <input class="form-button" type="submit" value="Add Book">
+                    </section>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Powered by <a href='https://golang.org/'>Go 🔌</a></p>
+    </footer>
+</body>
+
+</html>
+
