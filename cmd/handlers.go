@@ -10,6 +10,9 @@ import (
 	"strings"
 )
 
+/* The signature of the home handler is defined as a method against *application.
+   Because the home handler is a method against the application struct, it can
+   access its fields. */
 func (app *application) indexHandler(w http.ResponseWriter, r *http.Request) {
 	books, err := app.books.GetAllBooks()
 	if err != nil {

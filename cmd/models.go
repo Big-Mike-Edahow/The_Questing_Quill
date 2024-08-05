@@ -7,6 +7,8 @@ import (
 	"log"
 )
 
+/* Define a Book type to hold the data for an individual book. The fields
+   of the struct correspond to the fields in our SQLite books table. */
 type Book struct {
 	Id      int
 	Isbn    string
@@ -16,6 +18,7 @@ type Book struct {
 	Price   string
 }
 
+// Define a BookModel type which wraps an sql.DB connection pool.
 type BookModel struct {
 	DB *sql.DB
 }
@@ -56,6 +59,7 @@ func (m *BookModel) GetAllBooks() ([]Book, error) {
 	return books, err
 }
 
+// DB.Exec() is used for statements which don’t return rows (like INSERT, UPDATE, and DELETE).
 func (m *BookModel) Insert(isbn string, title string, author string, excerpt string, price string) error {
 	stmt := "INSERT INTO books(isbn, title, author, excerpt, price) VALUES(?, ?, ?, ?, ?)"
 	_, err := m.DB.Exec(stmt, isbn, title, author, excerpt, price)
